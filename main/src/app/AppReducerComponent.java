@@ -13,6 +13,6 @@ public final class AppReducerComponent {
             case Add add -> String.format("string %s", add.text());
             case Check check -> String.format("int %d", check.id());
             case Delete delete -> String.format("int %d", delete.id());
-        }
+        };
     }
 }
