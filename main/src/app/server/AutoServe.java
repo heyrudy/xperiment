@@ -1,9 +1,18 @@
 package app.server;
 
+import java.util.concurrent.Executor;
+
 public interface AutoServe {
 
-    String listen();
-    String start();
-    String stop();
-    String restart();
+    AutoServe create();
+    HttpServer createContext(String path);
+    void removeContext(String path);
+    CustomSocketAddress getAddress();
+    void setExecutor(Executor executor);
+    Executor getExecutor();
+    AutoServe bind();
+    AutoServe listen();
+    void start();
+    void stop();
+    void restart();
 }
