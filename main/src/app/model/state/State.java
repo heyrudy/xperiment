@@ -1,6 +1,6 @@
 package app.model.state;
 
-public interface State<T> {
+public interface State {
 
-    Object queryField(T t, Object obj);
+    Object queryField(Object obj);
 }
