@@ -1,8 +1,28 @@
 package app.router;
 
-import app.controller.AddTodoAction;
-import app.controller.DeleteTodoAction;
-import app.controller.ShowTodosAction;
+public sealed interface TodosRouter {
+}
 
-public sealed interface TodosRouter permits PostTodoUrlAction, GetTodosUrlAction, DeleteTodoUrlAction {
+record GetTodosUrlAction(int id) implements TodosRouter, AutoRoute {
+
+    @Override
+    public String action() {
+        return String.format("This is our GET url path/%d", this.id());
+    }
+}
+
+record PostTodoUrlAction(String text) implements TodosRouter, AutoRoute {
+
+    @Override
+    public String action() {
+        return String.format("This is our POST url path/%s", this.text());
+    }
+}
+
+record DeleteTodoUrlAction(int id) implements TodosRouter, AutoRoute {
+
+    @Override
+    public String action() {
+        return String.format("This is our DELETE url path/%d", this.id());
+    }
 }

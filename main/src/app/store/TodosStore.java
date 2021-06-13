@@ -1,4 +1,5 @@
 package app.store;
 
-public sealed interface TodosStore permits InsertTodoCommandAction, SelectTodosQueryAction, DeleteTodoCommandAction {
+public sealed interface TodosStore permits DeleteTodoCommandAction, InsertTodoCommandAction, SelectTodosQueryAction {
 }
+
