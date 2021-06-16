@@ -1,8 +1,8 @@
 package app.controller;
 
-import app.store.DeleteTodoCommandAction;
-import app.store.InsertTodoCommandAction;
-import app.store.SelectTodosQueryAction;
+import app.store.TodosStore.SelectTodosQueryAction;
+import app.store.TodosStore.DeleteTodoCommandAction;
+import app.store.TodosStore.InsertTodoCommandAction;
 
 public sealed interface TodosController {
 }
@@ -10,7 +10,6 @@ public sealed interface TodosController {
 
 record AddTodoAction(String text) implements TodosController, Controller {
 
-    @Override
     public String action() {
         InsertTodoCommandAction store = new InsertTodoCommandAction(this.text());
         store.action();
@@ -20,7 +19,6 @@ record AddTodoAction(String text) implements TodosController, Controller {
 
 record ShowTodosAction(int id) implements TodosController, Controller {
 
-    @Override
     public String action() {
         SelectTodosQueryAction store = new SelectTodosQueryAction(this.id());
         store.action();
@@ -30,7 +28,6 @@ record ShowTodosAction(int id) implements TodosController, Controller {
 
 record DeleteTodoAction(int id) implements TodosController, Controller {
 
-    @Override
     public String action() {
         DeleteTodoCommandAction store = new DeleteTodoCommandAction(this.id());
         store.action();
