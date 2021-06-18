@@ -4,7 +4,10 @@ import app.store.TodosStore.SelectTodosQueryAction;
 import app.store.TodosStore.DeleteTodoCommandAction;
 import app.store.TodosStore.InsertTodoCommandAction;
 
-public sealed interface TodosController permits TodosController.AddTodoAction, TodosController.DeleteTodoAction, TodosController.ShowTodosAction {
+public sealed interface TodosController permits
+        TodosController.AddTodoAction,
+        TodosController.DeleteTodoAction,
+        TodosController.ShowTodosAction {
 
     record AddTodoAction(String text) implements TodosController, Controller {
 

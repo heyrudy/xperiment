@@ -1,6 +1,9 @@
 package app.router;
 
-public sealed interface TodosRouter permits TodosRouter.PostTodoUrlAction, TodosRouter.GetTodosUrlAction, TodosRouter.DeleteTodoUrlAction {
+public sealed interface TodosRouter permits
+        TodosRouter.PostTodoUrlAction,
+        TodosRouter.GetTodosUrlAction,
+        TodosRouter.DeleteTodoUrlAction {
 
     record GetTodosUrlAction(int id) implements TodosRouter, AutoRoute {
 

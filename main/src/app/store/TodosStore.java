@@ -5,7 +5,10 @@ import app.model.Todo;
 import java.util.Collections;
 import java.util.List;
 
-public sealed interface TodosStore permits TodosStore.DeleteTodoCommandAction, TodosStore.InsertTodoCommandAction, TodosStore.SelectTodosQueryAction {
+public sealed interface TodosStore permits
+        TodosStore.DeleteTodoCommandAction,
+        TodosStore.InsertTodoCommandAction,
+        TodosStore.SelectTodosQueryAction {
 
     record DeleteTodoCommandAction(int id) implements Store, TodosStore {
 
