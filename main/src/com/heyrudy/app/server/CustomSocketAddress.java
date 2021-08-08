@@ -1,4 +1,4 @@
-package app.server;
+package com.heyrudy.app.server;
 
 public sealed interface CustomSocketAddress {
 

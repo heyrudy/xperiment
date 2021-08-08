@@ -1,4 +1,4 @@
-package app.router;
+package com.heyrudy.app.router;
 
 public interface AutoRoute {
 

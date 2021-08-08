@@ -1,4 +1,4 @@
-package app.model.state;
+package com.heyrudy.app.model.state;
 
 public interface State {
 

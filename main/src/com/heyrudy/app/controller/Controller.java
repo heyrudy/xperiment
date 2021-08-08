@@ -1,4 +1,4 @@
-package app.controller;
+package com.heyrudy.app.controller;
 
 public interface Controller {
 
