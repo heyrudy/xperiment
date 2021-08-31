@@ -2,8 +2,9 @@ package com.heyrudy.app.server;
 
 import java.util.concurrent.Executor;
 
-public sealed interface HttpServer extends AutoServe permits
-        HttpServer.HttpServerAddressConfig,
+public sealed interface HttpServer
+        extends AutoServe
+        permits HttpServer.HttpServerAddressConfig,
         HttpServer.HttpServerCompressionConfig,
         HttpServer.HttpServerContextParametersConfig,
         HttpServer.HttpServerContextPathConfig,

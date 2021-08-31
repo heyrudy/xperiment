@@ -1,6 +1,6 @@
 package com.heyrudy.app.controller;
 
-public interface Controller {
+public interface Controller<T, U> {
 
-    String action();
+    U action(T t);
 }

@@ -1,6 +1,6 @@
 package com.heyrudy.app.router;
 
-public interface AutoRoute {
+public interface AutoRoute<T, U> {
 
-    String action();
+    U action(T t);
 }

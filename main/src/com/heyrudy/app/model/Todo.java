@@ -1,40 +1,42 @@
 package com.heyrudy.app.model;
 
-import com.heyrudy.app.model.state.State;
+import com.heyrudy.app.model.state.EntityState;
 
 import java.util.List;
+import java.util.Optional;
 
-public record Todo(Integer id, String text, Boolean completed) implements State {
+public record Todo(TodoId todoId, Description description, Completed completed)
+        implements EntityState {
 
     public static List<Todo> initState() {
         return List.of();
     }
 
-    public Todo withId(Integer id) {
-        return new Todo(id, text(), completed());
+    public Todo withTodoId(Integer id) {
+        return new Todo(new TodoId(id), description, completed);
     }
 
-    public Todo withText(String text) {
-        return new Todo(id(), text, completed());
+    public Todo withDescription(String text) {
+        return new Todo(todoId, new Description(text), completed);
     }
 
-    public Todo withCompleted(Boolean completed) {
-        return new Todo(id(), text(), completed);
+    public Todo withCompleted(Boolean isCompleted) {
+        return new Todo(todoId, description, new Completed(isCompleted));
     }
 
-    public Object queryField(String name) {
+    public Optional<Object> queryField(final String name) {
         return switch (name) {
-            case "id" -> this.id();
-            case "text" -> this.text();
-            case "completed" -> this.completed();
-            default -> null;
+            case "id" -> Optional.ofNullable(todoId);
+            case "text" -> Optional.ofNullable(description);
+            case "completed" -> Optional.ofNullable(completed);
+            default -> Optional.empty();
         };
     }
 
-    public Object mutateField(String name, Object value) {
+    public Object mutateField(final String name, final Object value) {
         return switch (name) {
-            case "id" -> this.withId((Integer) value);
-            case "text" -> this.withText((String) value);
+            case "id" -> this.withTodoId((Integer) value);
+            case "text" -> this.withDescription((String) value);
             case "completed" -> this.withCompleted((Boolean) value);
             default -> this;
         };
