@@ -1,9 +1,6 @@
 package com.heyrudy.app.store;
 
-import com.heyrudy.app.model.Completed;
-import com.heyrudy.app.model.Description;
 import com.heyrudy.app.model.Todo;
-import com.heyrudy.app.model.TodoId;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -35,7 +32,7 @@ public sealed interface TodoStore
 
         public String action() {
             List<Todo> todos = new ArrayList<>(Todo.initState());
-            Todo todo = new Todo(new TodoId(1), new Description(text), new Completed(false));
+            Todo todo = new Todo(new Todo.TodoId(1), new Todo.Description(text), new Todo.Completed(false));
             todos.add(todo);
             List<Todo> todosUpdated = Collections.unmodifiableList(todos);
             return String.format("This is the text %s of our sql INSERT command", this.text());
