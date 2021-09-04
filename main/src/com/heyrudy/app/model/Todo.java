@@ -13,15 +13,15 @@ public record Todo(TodoId todoId, Description description, Completed completed)
     }
 
     public Todo withTodoId(Integer id) {
-        return new Todo(new Todo.TodoId(id), description, completed);
+        return new Todo(new TodoId(id), description, completed);
     }
 
     public Todo withDescription(String text) {
-        return new Todo(todoId, new Todo.Description(text), completed);
+        return new Todo(todoId, new Description(text), completed);
     }
 
     public Todo withCompleted(Boolean isCompleted) {
-        return new Todo(todoId, description, new Todo.Completed(isCompleted));
+        return new Todo(todoId, description, new Completed(isCompleted));
     }
 
     public Optional<Object> queryField(final String name) {
