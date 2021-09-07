@@ -49,6 +49,5 @@ public sealed interface TodoStore
             return String.format("This is the todoId %d of our sql SELECT query", this.id());
         }
     }
-
 }
 

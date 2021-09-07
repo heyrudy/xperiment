@@ -2,9 +2,9 @@ package com.heyrudy.app.model.state;
 
 import java.util.Optional;
 
-public interface EntityState {
+public interface EntityState<T> {
 
-    Optional<Object> queryField(final String name) ;
+    Optional<Object> queryField(T value, final Object from);
 
-    Object mutateField(final String name, final Object value);
+    T mutateField(T value, final Object with);
 }
