@@ -1,6 +1,7 @@
 package com.heyrudy.app.store;
 
 import com.heyrudy.app.model.Todo;
+import com.heyrudy.app.model.TodoId;
 import com.heyrudy.app.model.dto.TodoDto;
 
 import java.util.ArrayList;
@@ -27,23 +28,23 @@ public sealed interface TodoStore
         }
     }
 
-    record SelectTodosQueryAction(int id) implements TodoStore {
+    record SelectTodosQueryAction(TodoId todoId) implements TodoStore {
 
         public String select() {
             List<Todo> todos = new ArrayList<>(Todo.initState());
             List<Todo> selectedTodoById = todos.stream()
-                    .filter((Todo todo) -> todo.todoId().id() == id)
+                    .filter((Todo todo) -> todo.todoId().id() == todoId.id())
                     .toList();
-            return String.format("This is the todoId %d of our sql SELECT query : %s", this.id(), selectedTodoById);
+            return String.format("This is the todoId %d of our sql SELECT query : %s", this.todoId.id(), selectedTodoById);
         }
     }
 
-    record DeleteTodoCommandAction(int id) implements TodoStore {
+    record DeleteTodoCommandAction(TodoId todoId) implements TodoStore {
 
         public String delete() {
             List<Todo> todos = new ArrayList<>(Todo.initState());
-            todos.remove(id);
-            return String.format("This is the todoId %d of our sql DELETE command : %s", this.id(), todos);
+            todos.remove(todoId.id());
+            return String.format("This is the todoId %d of our sql DELETE command : %s", this.todoId.id(), todos);
         }
     }
 }

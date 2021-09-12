@@ -36,10 +36,10 @@ public sealed class Sample<T>
     record SampleEx(Inter inter) {
 
         public static void main(String[] args) {
-            System.out.println(new SampleEx(new Sample<>()).bar());
+            System.out.println(new SampleEx(new Sample<>()).foo());
         }
 
-        private String bar() {
+        private String foo() {
             return inter.foo();
         }
     }

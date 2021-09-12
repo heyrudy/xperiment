@@ -1,5 +1,6 @@
 package com.heyrudy.app.controller;
 
+import com.heyrudy.app.model.TodoId;
 import com.heyrudy.app.model.dto.TodoDto;
 import com.heyrudy.app.store.TodoStore;
 
@@ -24,21 +25,21 @@ public sealed interface TodosController
         }
     }
 
-    record ShowTodosAction(int id) implements TodosController {
+    record ShowTodosAction(TodoId todoId) implements TodosController {
 
         public String get() {
-            TodoStore.SelectTodosQueryAction store = new TodoStore.SelectTodosQueryAction(id);
+            TodoStore.SelectTodosQueryAction store = new TodoStore.SelectTodosQueryAction(todoId);
             store.select();
-            return String.format("This is the todoId %d of our http GET request", id);
+            return String.format("This is the todoId %d of our http GET request", todoId.id());
         }
     }
 
-    record DeleteTodoAction(int id) implements TodosController {
+    record DeleteTodoAction(TodoId todoId) implements TodosController {
 
         public String delete() {
-            TodoStore.DeleteTodoCommandAction store = new TodoStore.DeleteTodoCommandAction(id);
+            TodoStore.DeleteTodoCommandAction store = new TodoStore.DeleteTodoCommandAction(todoId);
             store.delete();
-            return String.format("This is the todoId %d of our http DELETE request", id);
+            return String.format("This is the todoId %d of our http DELETE request", todoId.id());
         }
     }
 }
