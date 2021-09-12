@@ -32,4 +32,15 @@ public sealed class Sample<T>
             return CCC;
         }
     }
+
+    record SampleEx(Inter inter) {
+
+        public static void main(String[] args) {
+            System.out.println(new SampleEx(new Sample<>()).bar());
+        }
+
+        private String bar() {
+            return inter.foo();
+        }
+    }
 }
