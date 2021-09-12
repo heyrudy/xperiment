@@ -18,15 +18,6 @@ public sealed interface TodoStore
         };
     }
 
-    record DeleteTodoCommandAction(int id) implements TodoStore {
-
-        public String delete() {
-            List<Todo> todos = new ArrayList<>(Todo.initState());
-            todos.remove(id);
-            return String.format("This is the todoId %d of our sql DELETE command : %s", this.id(), todos);
-        }
-    }
-
     record InsertTodoCommandAction(TodoDto todoDtoToAdd) implements TodoStore {
 
         public String insert() {
@@ -44,6 +35,15 @@ public sealed interface TodoStore
                     .filter((Todo todo) -> todo.todoId().id() == id)
                     .toList();
             return String.format("This is the todoId %d of our sql SELECT query : %s", this.id(), selectedTodoById);
+        }
+    }
+
+    record DeleteTodoCommandAction(int id) implements TodoStore {
+
+        public String delete() {
+            List<Todo> todos = new ArrayList<>(Todo.initState());
+            todos.remove(id);
+            return String.format("This is the todoId %d of our sql DELETE command : %s", this.id(), todos);
         }
     }
 }
