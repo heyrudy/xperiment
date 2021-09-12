@@ -19,13 +19,4 @@ public record Todo(TodoId todoId, Description description, Completed completed) 
     public Todo withCompleted(Boolean isCompleted) {
         return new Todo(todoId, description, new Completed(isCompleted));
     }
-
-    public static record TodoId(int id) {
-    }
-
-    public static record Description(String text) {
-    }
-
-    public static record Completed(boolean isCompleted) {
-    }
 }
