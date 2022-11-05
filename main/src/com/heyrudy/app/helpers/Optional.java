@@ -5,19 +5,19 @@ import java.util.function.Function;
 
 public sealed interface Optional<T>
         extends Monad<T>
-        permits Optional.Just, Optional.None {
+        permits Optional.Some, Optional.None {
 
-    final class Just<T> implements Optional<T> {
+    final class Some<T> implements Optional<T> {
 
         private final T value;
 
-        private Just(T value) {
+        private Some(T value) {
             this.value = Objects.requireNonNull(value);
         }
 
         // Monad return : T1 -> M<T1>
-        public static <T> Just<T> of(T value) {
-            return new Just<>(value);
+        public static <T> Some<T> of(T value) {
+            return new Some<>(value);
         }
 
         // Monad unbox : M<T> -> T
@@ -32,7 +32,7 @@ public sealed interface Optional<T>
 
         // fmap is a subset of bind
         public <U> Monad<U> fmap(Function<? super T, ? extends U> fn) {
-            return bind(fn.andThen(Just::of));
+            return bind(fn.andThen(Some::of));
         }
     }
 

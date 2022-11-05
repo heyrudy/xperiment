@@ -37,12 +37,12 @@ public sealed class Sample<T>
 
         static Item item = new Item("book", new Item.Price("$", 50));
 
-        static Monad<Item> monad = Optional.Just.of(item);
-        static Function<Integer, Monad<Integer>> discountFunction = amount -> Optional.Just.of(amount - 5);
+        static Monad<Item> itemSelection = Optional.Some.of(item);
+        static Function<Integer, Monad<Integer>> discountFunction = amount -> Optional.Some.of(amount - 5);
 
         // can also fmap because Monad is a functor - fmap is a subset of bind.
 
-        static Monad<String> result = monad
+        static Monad<String> result = itemSelection
                 .fmap(Item::price)
                 .fmap(Item.Price::amount)
                 .bind(discountFunction)
