@@ -1,5 +1,10 @@
 package com.heyrudy.app;
 
+import com.heyrudy.app.helpers.Monad;
+import com.heyrudy.app.helpers.Optional;
+
+import java.util.function.Function;
+
 public sealed class Sample<T>
         implements Inter
         permits Sample.One {
@@ -24,8 +29,28 @@ public sealed class Sample<T>
     record SampleRec<T extends Number>(int i) {
         static final String CCC = "ccc";
 
+        record Item(String name, Price price) {
+
+            record Price(String currency, Integer amount) {
+            }
+        }
+
+        static Item item = new Item("book", new Item.Price("$", 50));
+
+        static Monad<Item> monad = Optional.Just.of(item);
+        static Function<Integer, Monad<Integer>> discountFunction = amount -> Optional.Just.of(amount - 5);
+
+        // can also fmap because Monad is a functor - fmap is a subset of bind.
+
+        static Monad<String> result = monad
+                .fmap(Item::price)
+                .fmap(Item.Price::amount)
+                .bind(discountFunction)
+                .fmap(price -> "price: " + price);
+
         public static void main(String[] args) {
-            System.out.println(new Sample.SampleRec<Integer>(5).foo());
+            System.out.println(new Sample.SampleRec<>(5).foo());
+            System.out.println(result.get());
         }
 
         private String foo() {
