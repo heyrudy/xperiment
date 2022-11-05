@@ -13,6 +13,6 @@ public interface Monad<T> {
     T get();
     // monad bind : M<T> -> (T -> M<U>) -> M<U>
     <U> Monad<U> bind(Function<? super T, Monad<U>> mapping);
-    // a monad is a functor so it can also fmap
+    // a monad is a functor, so it can also fmap
     <U> Monad<U> fmap(Function<? super T, ? extends U> fn);
 }
